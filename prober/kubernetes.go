@@ -48,7 +48,7 @@ func probeKubernetes(ctx context.Context, target string, module config.Module, r
 		return err
 	}
 	for _, secret := range secrets.Items {
-		if secret.Type == "kubernetes.io/tls" {
+		if secret.Type == "kubernetes.io/tls" || secret.Type == "istio.io/ca-root" {
 			nMatch, err := doublestar.Match(ns, secret.Namespace)
 			if err != nil {
 				return err

@@ -301,7 +301,7 @@ func collectKubernetesSecretMetrics(secrets []v1.Secret, registry *prometheus.Re
 	registry.MustRegister(kubernetesNotAfter, kubernetesNotBefore)
 
 	for _, secret := range secrets {
-		for _, key := range []string{"tls.crt", "ca.crt"} {
+		for _, key := range []string{"tls.crt", "ca.crt", "ca-cert.pem"} {
 			data := secret.Data[key]
 			if len(data) == 0 {
 				continue
